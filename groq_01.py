@@ -29,7 +29,8 @@ context=resume_text
 prompt=f""" your task is extract the data into json(key-value) format from a given context, the context is givenn below.
            here is the context : {context}
 
-           Note : you are restricted to provide the response in json format with key-value pair only fromm the given context of text, do not include any other data into the response by own.
+           Note : you are restricted to provide the response in json format with key-value pair only from the given context of text, do not include any other data into the response by own, 
+                  and must keep in mind that do not change or modify the key name by own, let it remain same which is given in context.
            """
 
 chat_completion = client.chat.completions.create(
@@ -44,6 +45,9 @@ chat_completion = client.chat.completions.create(
         }
     ],
     model="llama3-8b-8192",
+    # temperature = 0.1,
+    # # top_p = 1,
+    # max_tokens = 256,
 )
 
 print(chat_completion.choices[0].message.content)
